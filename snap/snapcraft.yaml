@@ -1,4 +1,4 @@
-name: zeit
+name: itrue-zeit
 base: core22
 summary: A command line tool for tracking time spent on tasks & projects.
 description: |
@@ -38,7 +38,7 @@ parts:
       craftctl set grade="devel"
 
 apps:
-  zeit:
+  itrue-zeit:
     command: bin/zeit
     environment:
       ZEIT_DB: "$HOME/zeit.db" 
