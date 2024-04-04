@@ -1,0 +1,44 @@
+name: zeit
+base: core22
+summary: A command line tool for tracking time spent on tasks & projects.
+description: |
+  Zeit, erfassen. A command line tool for tracking time spent on tasks & 
+  projects.
+
+  The database file will be saved to $HOME/snap/zeit/current/zeit.db. If you
+  want to use a different file, for example to synchronise it to Nextcloud or
+  Dropbox, you can create a hardlink to the file like so:
+
+      ln -v $HOME/Nextcloud/zeit.db \
+        $HOME/snap/zeit/current/zeit.db
+
+  This avoids having to give any permissions to read your home folder to the
+  snap.
+
+  --
+
+  This is a community made snap and is not supported by the Zeit authors!
+adopt-info: zeit
+confinement: strict
+license: GPL-3.0
+source-code: https://github.com/IsaacJT/zeit-snap
+issues: https://github.com/IsaacJT/zeit-snap/issues
+
+parts:
+  zeit:
+    plugin: go
+    build-snaps:
+      - go
+    source: https://github.com/mrusme/zeit.git
+    source-branch: master
+    source-type: git
+    override-build: |
+      craftctl default
+      craftctl set version="$(git -C "${CRAFT_PART_SRC}" describe --tags)"
+      craftctl set grade="devel"
+
+apps:
+  zeit:
+    command: bin/zeit
+    environment:
+      ZEIT_DB: "$HOME/zeit.db" 
