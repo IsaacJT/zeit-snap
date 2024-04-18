@@ -2,7 +2,7 @@ name: itrue-zeit
 base: core22
 summary: A command line tool for tracking time spent on tasks & projects.
 description: |
-  Zeit, erfassen. A command line tool for tracking time spent on tasks & 
+  Zeit, erfassen. A command line tool for tracking time spent on tasks &
   projects.
 
   The database file will be saved to $HOME/snap/zeit/current/zeit.db. If you
@@ -10,7 +10,7 @@ description: |
   Dropbox, you can create a hardlink to the file like so:
 
       ln -v $HOME/Nextcloud/zeit.db \
-        $HOME/snap/zeit/current/zeit.db
+        $HOME/snap/zeit/common/zeit.db
 
   This avoids having to give any permissions to read your home folder to the
   snap.
@@ -41,4 +41,4 @@ apps:
   itrue-zeit:
     command: bin/zeit
     environment:
-      ZEIT_DB: "$HOME/zeit.db" 
+      ZEIT_DB: "$SNAP_USER_COMMON/zeit.db"
